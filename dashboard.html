@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+  <title>Link Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./src/styles.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <div class="brand">
+        <div class="brand__mark" aria-hidden="true">LH</div>
+        <div class="brand__text">
+          <div class="brand__title">Link Hub</div>
+          <div class="brand__subtitle">Kumpulan link situs</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn--ghost" id="exportBtn" type="button">Export</button>
+        <label class="btn btn--ghost fileBtn" for="importFile">
+          Import
+          <input id="importFile" type="file" accept="application/json" />
+        </label>
+        <button class="btn btn--primary" id="addBtn" type="button">Tambah link</button>
+        <button class="btn btn--ghost" id="logoutBtn" type="button">Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="appMain">
+    <section class="toolbar" aria-label="Pencarian dan filter">
+      <div class="search">
+        <input id="searchInput" class="input" type="search" placeholder="Cari judul / deskripsi / domain…"
+          autocomplete="off" />
+      </div>
+      <div class="toolbar__right">
+        <select id="sortSelect" class="input input--select" aria-label="Urutkan">
+          <option value="updatedAt_desc">Terbaru diupdate</option>
+          <option value="createdAt_desc">Terbaru ditambah</option>
+          <option value="title_asc">Judul (A–Z)</option>
+          <option value="domain_asc">Domain (A–Z)</option>
+        </select>
+        <button class="btn btn--ghost" id="clearAllBtn" type="button" title="Hapus semua">
+          Clear
+        </button>
+      </div>
+    </section>
+
+    <section class="grid" id="grid" aria-label="Daftar link"></section>
+
+    <section class="empty" id="emptyState" hidden>
+      <div class="empty__card">
+        <div class="empty__title">Belum ada link.</div>
+        <div class="empty__desc">Klik “Tambah link” untuk mulai mengisi.</div>
+        <button class="btn btn--primary" id="emptyAddBtn" type="button">Tambah link</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="dialog" id="linkDialog" aria-label="Form link">
+    <form id="linkForm" method="dialog" class="dialog__body">
+      <div class="dialog__head">
+        <div>
+          <div class="dialog__title" id="dialogTitle">Tambah link</div>
+          <div class="dialog__subtitle">Disimpan otomatis ke IndexedDB</div>
+        </div>
+        <button class="iconBtn" type="button" id="closeDialogBtn" aria-label="Tutup">
+          ✕
+        </button>
+      </div>
+
+      <input type="hidden" id="idInput" />
+
+      <label class="field">
+        <span class="field__label">Judul</span>
+        <input class="input" id="titleInput" required maxlength="80" placeholder="Mis. Portfolio" />
+      </label>
+
+      <label class="field">
+        <span class="field__label">URL</span>
+        <input class="input" id="urlInput" required inputmode="url" placeholder="https://contoh.com" />
+        <span class="field__hint" id="urlHint">Wajib pakai http(s).</span>
+      </label>
+
+      <label class="field">
+        <span class="field__label">Deskripsi (opsional)</span>
+        <textarea class="input input--textarea" id="descInput" maxlength="180"
+          placeholder="Catatan singkat…"></textarea>
+      </label>
+
+      <div class="dialog__foot">
+        <button class="btn btn--ghost" id="deleteBtn" type="button" hidden>Hapus</button>
+        <div class="dialog__footRight">
+          <button class="btn btn--ghost" id="cancelBtn" type="button">Batal</button>
+          <button class="btn btn--primary" id="saveBtn" type="submit">Simpan</button>
+        </div>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" aria-live="polite" aria-atomic="true" hidden></div>
+
+  <script src="./src/app.js" defer></script>
+</body>
+
+</html>

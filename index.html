@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+  <title>Login · Link Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./src/styles.css" />
+</head>
+
+<body class="loginPage">
+  <main class="authWrap container">
+    <div class="authCard" role="dialog" aria-label="Login">
+      <div class="auth__brand">
+        <div class="brand__mark auth__mark" aria-hidden="true">LH</div>
+        <div>
+          <div class="auth__title">Login</div>
+          <div class="auth__subtitle">Masuk untuk mengakses Link Hub</div>
+        </div>
+      </div>
+
+      <form class="auth__form" id="loginForm" autocomplete="off">
+        <label class="field">
+          <span class="field__label">Username</span>
+          <input class="input" id="loginUser" name="username" type="text" inputmode="text" autocomplete="username"
+            autocapitalize="none" spellcheck="false" placeholder="" required />
+        </label>
+
+        <label class="field">
+          <span class="field__label">Password</span>
+          <input class="input" id="loginPass" name="password" type="password" autocomplete="current-password"
+            placeholder="" required />
+        </label>
+
+        <button class="btn btn--primary auth__submit" id="loginBtn" type="submit">Masuk</button>
+        <div class="auth__hint" id="loginHint" aria-live="polite"></div>
+      </form>
+    </div>
+  </main>
+
+  <script src="./src/login.js" defer></script>
+</body>
+
+</html>
